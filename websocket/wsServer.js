@@ -16,15 +16,16 @@ class WSServer {
       // Send current state to new client
       ws.send(JSON.stringify(stateManager.getCurrentState()));
 
-      ws.on('message', (message) => {
+      ws.on('message', async (message) => {
         try {
           const data = JSON.parse(message);
           console.log(`📨 Received from AI service:`, data);
           
           const driverState = data.state || data.status;
           if (driverState && ['normal', 'drowsy', 'yawn'].includes(driverState)) {
-            stateManager.updateState(driverState);
-            this.broadcast(stateManager.getCurrentState());
+            await stateManager.updateState(driverState, data.confidence);
+            const currentState = await stateManager.getCurrentState();
+            this.broadcast(currentState);
           }
         } catch (error) {
           console.error('❌ Invalid message format:', error.message);

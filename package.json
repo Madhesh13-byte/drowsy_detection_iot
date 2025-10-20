@@ -8,14 +8,23 @@
     "dev": "nodemon server.js"
   },
   "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
     "express": "^4.18.2",
-    "ws": "^8.14.2",
-    "cors": "^2.8.5"
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.19.1",
+    "ws": "^8.14.2"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"
   },
-  "keywords": ["websocket", "drowsiness", "detection", "realtime"],
+  "keywords": [
+    "websocket",
+    "drowsiness",
+    "detection",
+    "realtime"
+  ],
   "author": "",
   "license": "MIT"
 }

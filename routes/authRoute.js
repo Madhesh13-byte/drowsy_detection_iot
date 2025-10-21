@@ -58,14 +58,24 @@ router.post('/login', async (req, res) => {
     // Generate JWT
     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '7d' });
 
+    // Store current user info for camera module
+    const fs = require('fs');
+    const path = require('path');
+    const { spawn } = require('child_process');
+    
+    const userInfo = {
+      id: user._id,
+      name: user.name,
+      email: user.email
+    };
+    fs.writeFileSync(path.join(__dirname, '../current_user.json'), JSON.stringify(userInfo));
+
+
+
     res.json({
       message: 'Login successful',
       token,
-      user: {
-        id: user._id,
-        name: user.name,
-        email: user.email
-      }
+      user: userInfo
     });
 
     console.log(`🔐 User logged in: ${email}`);

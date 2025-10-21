@@ -14,6 +14,11 @@ const statusSchema = new mongoose.Schema({
   timestamp: {
     type: Date,
     default: Date.now
+  },
+  driverId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
   }
 });
 

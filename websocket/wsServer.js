@@ -1,5 +1,6 @@
 const WebSocket = require('ws');
 const stateManager = require('../utils/stateManager');
+const mqttClient = require('../utils/mqttClient');
 
 class WSServer {
   constructor(server) {
@@ -22,8 +23,14 @@ class WSServer {
           console.log(`📨 Received from AI service:`, data);
           
           const driverState = data.state || data.status;
-          if (driverState && ['normal', 'drowsy', 'yawn'].includes(driverState)) {
-            await stateManager.updateState(driverState, data.confidence);
+          if (driverState && ['normal', 'drowsy', 'yawn', 'no_face'].includes(driverState)) {
+            if (['normal', 'drowsy', 'yawn'].includes(driverState)) {
+              await stateManager.updateState(driverState, data.confidence, data.driverId);
+            }
+            
+            // Send MQTT alert for ESP32
+            mqttClient.publishAlert(driverState, data.driverId);
+            
             const currentState = await stateManager.getCurrentState();
             this.broadcast(currentState);
           }

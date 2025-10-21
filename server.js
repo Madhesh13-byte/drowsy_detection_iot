@@ -4,12 +4,16 @@ const http = require('http');
 const cors = require('cors');
 const connectDB = require('./config/database');
 const WSServer = require('./websocket/wsServer');
+const mqttClient = require('./utils/mqttClient');
 const statusRoute = require('./routes/statusRoute');
 const authRoute = require('./routes/authRoute');
 const profileRoute = require('./routes/profileRoute');
 
 // Connect to MongoDB
 connectDB();
+
+// Connect to MQTT Broker
+mqttClient.connect();
 
 const app = express();
 const server = http.createServer(app);

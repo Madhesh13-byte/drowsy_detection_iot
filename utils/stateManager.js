@@ -6,7 +6,7 @@ class StateManager {
     this.lastUpdated = new Date();
   }
 
-  async updateState(newState, confidence = null) {
+  async updateState(newState, confidence = null, driverId = null) {
     this.currentState = newState;
     this.lastUpdated = new Date();
     
@@ -15,10 +15,11 @@ class StateManager {
       const statusRecord = new Status({
         state: newState,
         confidence: confidence,
-        timestamp: this.lastUpdated
+        timestamp: this.lastUpdated,
+        driverId: driverId
       });
       await statusRecord.save();
-      console.log(`🔄 State updated: ${newState} at ${this.lastUpdated.toLocaleTimeString()} - Saved to DB`);
+      console.log(`🔄 State updated: ${newState} at ${this.lastUpdated.toLocaleTimeString()} - Driver: ${driverId} - Saved to DB`);
     } catch (error) {
       console.error('❌ Error saving to database:', error.message);
     }

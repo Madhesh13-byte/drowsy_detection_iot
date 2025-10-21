@@ -30,6 +30,20 @@ router.get('/profile', authenticateToken, async (req, res) => {
   }
 });
 
+// Get driver by ID (for camera module)
+router.get('/:id', async (req, res) => {
+  try {
+    const User = require('../models/User');
+    const user = await User.findById(req.params.id).select('name email');
+    if (!user) {
+      return res.status(404).json({ error: 'Driver not found' });
+    }
+    res.json(user);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 // Update driver profile
 router.post('/profile', authenticateToken, async (req, res) => {
   try {

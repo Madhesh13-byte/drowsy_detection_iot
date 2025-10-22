@@ -30,8 +30,14 @@ const AuthPage = ({ onLogin }) => {
         const data = await response.json();
 
         if (response.ok) {
-          localStorage.setItem('token', data.token);
-          onLogin(data.user);
+          if (isLogin) {
+            localStorage.setItem('token', data.token);
+            onLogin(data.user);
+          } else {
+            // Registration successful - switch to login
+            alert('Registration successful! Please login with your credentials.');
+            switchToLogin();
+          }
         } else {
           alert(data.error || 'Authentication failed');
         }

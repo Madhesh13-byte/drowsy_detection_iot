@@ -8,6 +8,8 @@ const mqttClient = require('./utils/mqttClient');
 const statusRoute = require('./routes/statusRoute');
 const authRoute = require('./routes/authRoute');
 const profileRoute = require('./routes/profileRoute');
+const alertRoute = require('./routes/alertRoute');
+const analyticsRoute = require('./routes/analyticsRoute');
 
 // Connect to MongoDB
 connectDB();
@@ -32,6 +34,8 @@ app.use(express.json());
 app.use('/api', statusRoute);
 app.use('/api/auth', authRoute);
 app.use('/api/driver', profileRoute);
+app.use('/api/alerts', alertRoute);
+app.use('/api/analytics', analyticsRoute);
 
 // Initialize WebSocket server
 const wsServer = new WSServer(server);

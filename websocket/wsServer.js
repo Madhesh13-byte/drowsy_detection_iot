@@ -1,6 +1,7 @@
 const WebSocket = require('ws');
 const stateManager = require('../utils/stateManager');
 const mqttClient = require('../utils/mqttClient');
+const telegramAlert = require('../utils/telegramAlert');
 
 class WSServer {
   constructor(server) {
@@ -30,6 +31,19 @@ class WSServer {
             
             // Send MQTT alert for ESP32
             mqttClient.publishAlert(driverState, data.driverId);
+            
+            // Monitor drowsiness for Telegram alerts
+            if (data.driverId) {
+              // Get driver name from database
+              const User = require('../models/User');
+              try {
+                const user = await User.findById(data.driverId).select('name');
+                const driverName = user ? user.name : 'Unknown Driver';
+                telegramAlert.monitorDrowsiness(driverName, data.driverId, driverState, new Date());
+              } catch (error) {
+                console.error('Error fetching driver name:', error.message);
+              }
+            }
             
             const currentState = await stateManager.getCurrentState();
             this.broadcast(currentState);

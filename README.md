@@ -71,15 +71,15 @@ Driver drowsiness is one of the major causes of road accidents. Most existing sy
 **Controller**
 - ESP32
 - Receives commands from Node.js through MQTT and performs safety actions.
+<p align="center">
+  <img src="fullstack/archi_diagram.jpeg" width="850" alt="Architecture Diagram">
+</p>
 
 ## Hardware Safety Logic
 
 Our system follows a three-level safety mechanism rather than taking immediate action. When drowsiness is detected for the first time, the ESP32 activates a buzzer to alert the driver. If the driver remains drowsy and a second consecutive detection occurs, the system reduces the vehicle's speed while continuing the warning. If the driver still does not respond, the situation is treated as critical: the ESP32 applies emergency braking and turns on the emergency warning lights, while the Node.js server sends Telegram notifications to the driver's family and fleet manager and stores all event details in MongoDB.
 
 This staged approach avoids unnecessary emergency braking while giving the driver multiple opportunities to regain control.
-<p align="center">
-  <img src="fullstack/archi_diagram.jpeg" width="850" alt="Architecture Diagram">
-</p>
 | Stage | Actions Taken |
 |---|---|
 | **1st Detection** | Buzzer ON |

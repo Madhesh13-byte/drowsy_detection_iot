@@ -1,0 +1,162 @@
+.profile-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.profile-modal {
+  background: white;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 1px solid #eee;
+}
+
+.profile-header h2 {
+  margin: 0;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #666;
+}
+
+.profile-content {
+  padding: 1.5rem;
+}
+
+.profile-section {
+  margin-bottom: 2rem;
+}
+
+.profile-section h3 {
+  margin-bottom: 1rem;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #555;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.contact-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr auto;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  align-items: center;
+}
+
+.contact-group input,
+.contact-group select {
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.remove-btn {
+  background: #f44336;
+  color: white;
+  border: none;
+  padding: 0.75rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.add-btn {
+  background: #4CAF50;
+  color: white;
+  border: none;
+  padding: 0.75rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.checkbox-group {
+  margin-bottom: 1rem;
+}
+
+.checkbox-group label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.profile-footer {
+  padding: 1.5rem;
+  border-top: 1px solid #eee;
+  text-align: right;
+}
+
+.save-btn {
+  background: #667eea;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+}
+
+.save-btn:hover {
+  background: #5a6fd8;
+}
+
+@media (max-width: 768px) {
+  .contact-group {
+    grid-template-columns: 1fr;
+  }
+  
+  .profile-modal {
+    width: 95%;
+    margin: 1rem;
+  }
+}

@@ -1,0 +1,140 @@
+.dashboard {
+  min-height: 100vh;
+  background: #f5f5f5;
+}
+
+.dashboard-header {
+  background: white;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dashboard-header h1 {
+  margin: 0;
+  color: #333;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.profile-btn {
+  padding: 0.5rem 1rem;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-right: 1rem;
+}
+
+.logout-btn {
+  padding: 0.5rem 1rem;
+  background: #f44336;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.dashboard-content {
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.status-card, .alerts-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.status-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  border-radius: 10px;
+  margin: 1rem 0;
+  color: white;
+}
+
+.status-icon {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.status-text {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.status-info p {
+  margin: 0.5rem 0;
+}
+
+.connected {
+  color: #4CAF50;
+  font-weight: bold;
+}
+
+.disconnected {
+  color: #f44336;
+  font-weight: bold;
+}
+
+.alert-list {
+  margin-top: 1rem;
+}
+
+.alert {
+  padding: 1rem;
+  border-radius: 5px;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.alert svg {
+  font-size: 1.2rem;
+}
+
+.alert.success {
+  background: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.alert.warning {
+  background: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffeaa7;
+}
+
+.alert.danger {
+  background: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+@media (max-width: 768px) {
+  .dashboard-content {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
+}
